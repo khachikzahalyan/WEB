@@ -1,0 +1,69 @@
+.student-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.student-container h2 {
+  color: #2c3e50;
+}
+
+.task-list.student-list {
+  margin-top: 2rem;
+}
+
+.student-task {
+  background-color: #fefefe;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+}
+
+.student-task h4 {
+  margin: 0 0 0.5rem;
+}
+
+.answer-form textarea {
+  width: 100%;
+  height: 100px;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-bottom: 0.5rem;
+}
+
+.answer-form input[type="file"] {
+  margin-bottom: 0.5rem;
+}
+
+.answer-form button {
+  background-color: #27ae60;
+  color: white;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.answer-view {
+  background-color: #f4f9f4;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #cceacc;
+}
+
+.answer-view a {
+  color: #2980b9;
+  text-decoration: none;
+}
+
+.teacher-feedback {
+  margin-top: 1rem;
+  background-color: #f9f0f0;
+  padding: 0.5rem;
+  border: 1px solid #e5b4b4;
+  border-radius: 6px;
+}
