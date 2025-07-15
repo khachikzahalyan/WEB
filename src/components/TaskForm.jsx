@@ -11,20 +11,20 @@ export default function TaskForm({
 }) {
   return (
     <div className="task-form">
-      <h3>{isEdit ? "Редактировать задание" : "Новое задание"}</h3>
+      <h3>{isEdit ? "Խմբագրել առաջադրանքը" : "Նոր առաջադրանք"}</h3>
       <input
         type="text"
-        placeholder="Заголовок"
+        placeholder="Վերնագիր"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <textarea
-        placeholder="Описание задания"
+        placeholder="Առաջադրանքի նկարագրություն"
         value={description}
         onChange={e => setDescription(e.target.value)}
       />
       <button onClick={onSubmit}>
-        {isEdit ? "Сохранить изменения" : "Добавить задание"}
+        {isEdit ? "Պահպանել փոփոխությունները" : "Ավելացնել առաջադրանք"}
       </button>
     </div>
   );

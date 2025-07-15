@@ -1,55 +1,78 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #fefefe;
+/* Сброс и базовые настройки */
+body, html {
+  height: 100%;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9fafb;
   color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.student-container {
-  max-width: 900px;
-  margin: 0 auto;
+/* Основной контейнер */
+.stu-panel-container {
   background: white;
-  padding: 25px 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  padding: 40px 50px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  max-width: 850px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
 }
 
-h2, h3, h4, h5 {
+/* Заголовок */
+.stu-panel-title {
+  font-size: 30px;
   color: #2c3e50;
+  margin-bottom: 12px;
+  font-weight: 700;
 }
 
-button {
-  cursor: pointer;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 4px;
+/* Текст приветствия */
+.stu-welcome-text {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Кнопка выхода */
+.stu-logout-btn {
   background-color: #27ae60;
-  color: white;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 40px;
+  transition: background-color 0.3s ease;
 }
 
-button:hover:not(:disabled) {
+.stu-logout-btn:hover:not(:disabled) {
   background-color: #1e8449;
 }
 
-button:disabled {
+.stu-logout-btn:disabled {
   background-color: #95a5a6;
   cursor: not-allowed;
 }
 
+/* Все textarea в приложении, если надо - можно сузить область действия, если есть вложенность компонентов */
 textarea {
   width: 100%;
-  padding: 8px 10px;
-  min-height: 80px;
-  margin: 10px 0;
+  padding: 12px 14px;
+  min-height: 90px;
+  margin: 16px 0;
   box-sizing: border-box;
-  border: 1.5px solid #bdc3c7;
-  border-radius: 5px;
-  font-size: 14px;
+  border: 1.8px solid #bdc3c7;
+  border-radius: 8px;
+  font-size: 16px;
   resize: vertical;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.3s ease;
 }
 
 textarea:focus {
@@ -57,53 +80,55 @@ textarea:focus {
   outline: none;
 }
 
+/* Стиль для инпута file (если используется) */
 input[type="file"] {
-  margin-bottom: 12px;
+  margin-bottom: 18px;
+  border-radius: 8px;
 }
 
+/* Для контейнера задач (можно переопределить отдельно) */
 .task-item.student-task {
-  border: 1px solid #dcdde1;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border: 1.8px solid #dcdde1;
+  padding: 24px 28px;
+  border-radius: 12px;
+  margin-bottom: 28px;
   background: #fff;
-  box-shadow: 0 0 8px rgba(0,0,0,0.03);
+  box-shadow: 0 0 12px rgba(0,0,0,0.04);
+  text-align: left;
 }
 
+/* Стили для области ответов */
 .answer-form textarea {
-  min-height: 80px;
+  min-height: 90px;
 }
 
 .answer-view {
   background: #eafaf1;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #a8d5ba;
-}
-
-.answer-view pre {
+  padding: 20px;
+  border-radius: 10px;
+  border: 1.8px solid #a8d5ba;
+  margin-top: 18px;
   white-space: pre-wrap;
-  margin: 8px 0;
+  font-size: 15px;
+  color: #2f4f2f;
 }
 
+/* Отзывы преподавателя */
 .teacher-feedback {
   background: #d4efdf;
-  border-left: 4px solid #27ae60;
-  padding: 10px 15px;
-  margin-top: 15px;
-  border-radius: 0 8px 8px 0;
+  border-left: 6px solid #27ae60;
+  padding: 16px 22px;
+  margin-top: 22px;
+  border-radius: 0 14px 14px 0;
+  font-size: 15px;
+  color: #27632a;
 }
 
-.teacher-feedback p {
-  margin: 6px 0;
-}
-
-/* Ссылка на файл */
-
+/* Ссылки в ответах */
 .answer-view a {
   color: #2980b9;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .answer-view a:hover {

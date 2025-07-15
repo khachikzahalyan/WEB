@@ -1,12 +1,11 @@
-
 import StudentTaskItem from "./StudentTaskItem";
 
 export default function StudentTaskList({ tasks, studentUsername, onSubmitAnswer }) {
   return (
-    <div className="task-list student-list">
-      <h3>📚 Задания</h3>
+    <div className="student-tasklist">
+      <h3>📚 Առաջադրանքներ</h3>
       {tasks.length === 0 ? (
-        <p>Пока нет заданий</p>
+        <p>Առաջադրանքներ դեռ չկան</p>
       ) : (
         tasks.map(task => (
           <StudentTaskItem

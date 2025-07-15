@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './login.css'; 
 import { loginUser, saveUser } from "../../utils/auth";
+import "./Login.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -13,29 +13,33 @@ export default function Login() {
     const user = loginUser(username, password);
     if (user) {
       saveUser(user);
-      navigate(`/${user.role}`); // ✅ Вот это исправлено
+      navigate(`/${user.role}`);
     } else {
-      setError("Неверный логин или пароль");
+      setError("Ներդրված մուտքանունը կամ գաղտնաբառը սխալ է");
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Вход</h2>
+    <div className="login-page__container">
+      <h2 className="login-page__title">Մուտք</h2>
       <input
+        className="login-page__input"
         type="text"
-        placeholder="Логин"
+        placeholder="Մուտքանուն"
         value={username}
-        onChange={e => setUsername(e.target.value)}
+        onChange={(e) => setUsername(e.target.value)}
       />
       <input
+        className="login-page__input"
         type="password"
-        placeholder="Пароль"
+        placeholder="Գաղտնաբառ"
         value={password}
-        onChange={e => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin}>Войти</button>
-      {error && <p>{error}</p>}
+      <button className="login-page__button" onClick={handleLogin}>
+        Մուտք գործել
+      </button>
+      {error && <p className="login-page__error">{error}</p>}
     </div>
   );
 }

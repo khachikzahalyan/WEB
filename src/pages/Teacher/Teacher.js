@@ -10,15 +10,14 @@ export default function Teacher() {
   const user = getUser();
   const navigate = useNavigate();
 
- 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [editTaskId, setEditTaskId] = useState(null);
   const [reviewTask, setReviewTask] = useState(null); 
   const [tasks, setTasks] = useState(() => {
-  const stored = localStorage.getItem("tasks");
-  return stored ? JSON.parse(stored) : [];
-});
+    const stored = localStorage.getItem("tasks");
+    return stored ? JSON.parse(stored) : [];
+  });
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -66,9 +65,8 @@ export default function Teacher() {
   };
 
   const handleDelete = (id) => {
-    if (window.confirm("Удалить это задание?")) {
+    if (window.confirm("Համոզվա՞ծ եք, որ ցանկանում եք հեռացնել այս առաջադրանքը։")) {
       setTasks(prev => prev.filter(task => task.id !== id));
-      // Если открыто ReviewPanel с этим заданием, закрыть его
       if (reviewTask && reviewTask.id === id) {
         setReviewTask(null);
       }
@@ -94,9 +92,9 @@ export default function Teacher() {
 
   if (reviewTask) {
     return (
-      <div className="teacher-container">
-        <button onClick={closeReview} style={{ marginBottom: "10px" }}>
-          ← Назад к списку заданий
+      <div className="teacher-main-container">
+        <button className="teacher-back-button" onClick={closeReview}>
+          ← Վերադառնալ առաջադրանքների ցուցակին
         </button>
         <ReviewPanel task={reviewTask} onSave={saveReview} onCancel={closeReview} />
       </div>
@@ -104,10 +102,12 @@ export default function Teacher() {
   }
 
   return (
-    <div className="teacher-container">
-      <h2>👨‍🏫 Панель Учителя</h2>
-      <p>Добро пожаловать, {user?.username}</p>
-      <button onClick={handleLogout}>Выйти</button>
+    <div className="teacher-main-container">
+      <header className="teacher-header">
+        <h2 className="teacher-title">👨‍🏫 Ուսուցիչ</h2>
+        <p className="teacher-welcome">Բարի գալուստ, <span className="teacher-username">{user?.username}</span></p>
+        <button className="teacher-logout-button" onClick={handleLogout}>Ելք</button>
+      </header>
 
       <TaskForm
         title={title}
@@ -116,13 +116,15 @@ export default function Teacher() {
         setDescription={setDescription}
         onSubmit={handleSubmit}
         isEdit={!!editTaskId}
+        className="teacher-task-form"
       />
 
       <TaskList
         tasks={tasks}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        onReview={openReview} // добавим кнопку "Проверить" в TaskList
+        onReview={openReview}
+        className="teacher-task-list"
       />
     </div>
   );
