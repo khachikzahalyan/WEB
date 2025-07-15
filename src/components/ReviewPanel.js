@@ -7,7 +7,6 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
   const [grade, setGrade] = useState("");
   const [lines, setLines] = useState([]);
 
-  // При смене выбранного ученика подгружаем ответ и комментарии
   useEffect(() => {
     if (!selectedStudent) {
       setAnswerText("");
@@ -31,7 +30,6 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
     }
   }, [selectedStudent, task]);
 
-  // Обновить комментарий по строке
   const handleCommentChange = (lineNum, value) => {
     setComments(prev => {
       const other = prev.filter(c => c.line !== lineNum);

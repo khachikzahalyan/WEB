@@ -26,18 +26,19 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
     }
   };
 
-  const handleSubmit = () => {
-    if (!text.trim() || isSubmitted) return;
-    onSubmitAnswer(task.id, {
-      student: studentUsername,
-      text,
-      file,
-      checked: false,
-      comments: [],
-      grade: null
-    });
-    setIsSubmitted(true);
-  };
+ const handleSubmit = async () => {
+  if (!text.trim() || isSubmitted) return;
+  await onSubmitAnswer(task.id, {
+    student: studentUsername,
+    text,
+    file,
+    checked: false,
+    comments: [],
+    grade: null
+  });
+  setIsSubmitted(true);
+};
+
 
   return (
     <div className="task-item student-task">

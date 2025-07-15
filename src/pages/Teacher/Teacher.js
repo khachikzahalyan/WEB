@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { getUser, logoutUser } from "../../utils/auth";
 import { useNavigate } from "react-router-dom";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../../firebase";
 import TaskForm from "../../components/TaskForm";
 import TaskList from "../../components/TaskList";
 import ReviewPanel from "../../components/ReviewPanel";
@@ -10,49 +19,42 @@ export default function Teacher() {
   const user = getUser();
   const navigate = useNavigate();
 
- 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [editTaskId, setEditTaskId] = useState(null);
-  const [reviewTask, setReviewTask] = useState(null); 
-  const [tasks, setTasks] = useState(() => {
-  const stored = localStorage.getItem("tasks");
-  return stored ? JSON.parse(stored) : [];
-});
+  const [reviewTask, setReviewTask] = useState(null);
+  const [tasks, setTasks] = useState([]);
 
+  // Подписка на коллекцию tasks из Firestore (реальное время)
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("tasks")) || [];
-    setTasks(stored);
+    const unsubscribe = onSnapshot(collection(db, "tasks"), snapshot => {
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setTasks(data);
+    });
+
+    return () => unsubscribe();
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
 
   const handleLogout = () => {
     logoutUser();
     navigate("/login", { replace: true });
   };
 
-  const handleSubmit = () => {
+  // Добавление или редактирование задания
+  const handleSubmit = async () => {
     if (!title.trim()) return;
 
     if (editTaskId) {
-      setTasks(prev =>
-        prev.map(task =>
-          task.id === editTaskId ? { ...task, title, description } : task
-        )
-      );
+      const taskRef = doc(db, "tasks", editTaskId);
+      await updateDoc(taskRef, { title, description });
       setEditTaskId(null);
     } else {
-      const newTask = {
-        id: Date.now().toString(),
+      await addDoc(collection(db, "tasks"), {
         title,
         description,
         createdBy: user.username,
         answers: []
-      };
-      setTasks(prev => [...prev, newTask]);
+      });
     }
 
     setTitle("");
@@ -65,13 +67,10 @@ export default function Teacher() {
     setEditTaskId(task.id);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm("Удалить это задание?")) {
-      setTasks(prev => prev.filter(task => task.id !== id));
-      // Если открыто ReviewPanel с этим заданием, закрыть его
-      if (reviewTask && reviewTask.id === id) {
-        setReviewTask(null);
-      }
+      await deleteDoc(doc(db, "tasks", id));
+      if (reviewTask && reviewTask.id === id) setReviewTask(null);
     }
   };
 
@@ -83,12 +82,10 @@ export default function Teacher() {
     setReviewTask(null);
   };
 
-  const saveReview = (taskId, updatedAnswers) => {
-    setTasks(prev =>
-      prev.map(task =>
-        task.id === taskId ? { ...task, answers: updatedAnswers } : task
-      )
-    );
+  // Сохранение результатов проверки учителем в Firestore
+  const saveReview = async (taskId, updatedAnswers) => {
+    const taskRef = doc(db, "tasks", taskId);
+    await updateDoc(taskRef, { answers: updatedAnswers });
     setReviewTask(null);
   };
 
@@ -122,7 +119,7 @@ export default function Teacher() {
         tasks={tasks}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        onReview={openReview} // добавим кнопку "Проверить" в TaskList
+        onReview={openReview}
       />
     </div>
   );

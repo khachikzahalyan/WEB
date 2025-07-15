@@ -13,7 +13,7 @@ export default function Login() {
     const user = loginUser(username, password);
     if (user) {
       saveUser(user);
-      navigate(`/${user.role}`); // ✅ Вот это исправлено
+      navigate(`/${user.role}`); 
     } else {
       setError("Неверный логин или пароль");
     }
@@ -24,13 +24,15 @@ export default function Login() {
       <h2>Вход</h2>
       <input
         type="text"
-        placeholder="Логин"
+        className="input-login"
+        placeholder="Մուտքանուն"
         value={username}
         onChange={e => setUsername(e.target.value)}
       />
       <input
         type="password"
-        placeholder="Пароль"
+        className="input-password"
+        placeholder="Գաղտնաբառ"
         value={password}
         onChange={e => setPassword(e.target.value)}
       />

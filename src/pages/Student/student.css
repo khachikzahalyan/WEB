@@ -40,6 +40,7 @@ button:disabled {
 }
 
 textarea {
+
   width: 100%;
   padding: 8px 10px;
   min-height: 80px;
