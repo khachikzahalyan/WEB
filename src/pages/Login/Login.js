@@ -14,6 +14,7 @@ export default function Login() {
     if (user) {
       saveUser(user);
       navigate(`/${user.role}`);
+      navigate(`/${user.role}`); 
     } else {
       setError("Ներդրված մուտքանունը կամ գաղտնաբառը սխալ է");
     }

@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { getUser, logoutUser } from "../../utils/auth";
 import { useNavigate } from "react-router-dom";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+import { db } from "../../firebase";
 import TaskForm from "../../components/TaskForm";
 import TaskList from "../../components/TaskList";
 import ReviewPanel from "../../components/ReviewPanel";
@@ -20,38 +28,33 @@ export default function Teacher() {
   });
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("tasks")) || [];
-    setTasks(stored);
-  }, []);
+    const unsubscribe = onSnapshot(collection(db, "tasks"), snapshot => {
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setTasks(data);
+    });
 
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+    return () => unsubscribe();
+  }, []);
 
   const handleLogout = () => {
     logoutUser();
     navigate("/login", { replace: true });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!title.trim()) return;
 
     if (editTaskId) {
-      setTasks(prev =>
-        prev.map(task =>
-          task.id === editTaskId ? { ...task, title, description } : task
-        )
-      );
+      const taskRef = doc(db, "tasks", editTaskId);
+      await updateDoc(taskRef, { title, description });
       setEditTaskId(null);
     } else {
-      const newTask = {
-        id: Date.now().toString(),
+      await addDoc(collection(db, "tasks"), {
         title,
         description,
         createdBy: user.username,
         answers: []
-      };
-      setTasks(prev => [...prev, newTask]);
+      });
     }
 
     setTitle("");
@@ -70,8 +73,7 @@ export default function Teacher() {
       if (reviewTask && reviewTask.id === id) {
         setReviewTask(null);
       }
-    }
-  };
+    }}
 
   const openReview = (task) => {
     setReviewTask(task);
@@ -81,12 +83,9 @@ export default function Teacher() {
     setReviewTask(null);
   };
 
-  const saveReview = (taskId, updatedAnswers) => {
-    setTasks(prev =>
-      prev.map(task =>
-        task.id === taskId ? { ...task, answers: updatedAnswers } : task
-      )
-    );
+  const saveReview = async (taskId, updatedAnswers) => {
+    const taskRef = doc(db, "tasks", taskId);
+    await updateDoc(taskRef, { answers: updatedAnswers });
     setReviewTask(null);
   };
 
