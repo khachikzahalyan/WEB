@@ -1,0 +1,28 @@
+.possibilities-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  margin-top: 40px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5fff4;
+  color: #2e3b2c;
+}
+
+.possibilities-container h1 {
+  font-size: 32px;
+  color: #1b5e20;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.possibilities-container ul {
+  padding-left: 20px;
+  list-style: disc;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.possibilities-container li {
+  margin-bottom: 10px;
+}

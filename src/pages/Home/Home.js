@@ -1,36 +1,15 @@
 import './Home.css';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export default function Home() {
-  const navigate = useNavigate();
-
   useEffect(() => {
     if (window.location.hash) {
       window.history.replaceState(null, '', window.location.pathname);
     }
   }, []);
 
-  const handleLogin = () => {
-    navigate('/login');
-  };
-
   return (
     <div className="home-container">
-      <header className="home-header">
-        <Link to="/" className="logo">Ուսումնական Պլատֆորմ</Link>
-        <nav className="home-menu">
-          <div className="menu-left">
-            <a href="#about">Մեր մասին</a>
-            <a href="#features">Հնարավորություններ</a>
-          </div>
-          <div className="menu-right">
-            <a href="#contact">Կապ</a>
-            <button className="login-button" onClick={handleLogin}>Մուտք</button>
-          </div>
-        </nav>
-      </header>
 
       <main className="home-main">
         <h1>Բարի գալուստ Ուսումնական Պլատֆորմ</h1>
