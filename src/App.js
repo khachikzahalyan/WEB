@@ -6,9 +6,7 @@ import Teacher from './pages/Teacher/Teacher';
 import Student from './pages/Student/Student';
 import ProtectedRoute from './components/ProtectedRoute';
 import { getUser } from './utils/auth';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Home from './pages/Home/Home';
 
 
 function App() {
