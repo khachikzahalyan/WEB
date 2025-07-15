@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { getUser, logoutUser } from "../../utils/auth";
-import { useNavigate } from "react-router-dom";
-import StudentTaskList from "../../components/StudentTaskList";
+import { getUser } from "../../utils/auth";
+import StudentTaskList from "../../components/StudentTaskList/StudentTaskList";
 import {
   collection,
   onSnapshot,
   updateDoc,
   doc
 } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db } from "../../utils/firebase";
 import "./student.css";
 
 export default function Student() {
   const user = getUser();
-  const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -27,12 +25,6 @@ export default function Student() {
 
     return () => unsubscribe();
   }, []);
-
-  const handleLogout = () => {
-    logoutUser();
-    navigate("/login", { replace: true });
-  };
-
  
   const handleAnswerSubmit = async (taskId, answer) => {
     const taskRef = doc(db, "tasks", taskId);
@@ -48,7 +40,6 @@ export default function Student() {
     <div className="stu-panel-container">
       <h2 className="stu-panel-title">👩‍🎓 Ուսանող</h2>
       <p className="stu-welcome-text">Բարի գալուստ, {user?.username}</p>
-      <button className="stu-logout-btn" onClick={handleLogout}>Ելք</button>
 
       <StudentTaskList
         tasks={tasks}

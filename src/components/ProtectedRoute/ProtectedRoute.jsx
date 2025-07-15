@@ -1,6 +1,5 @@
-import React from "react";
 import { Navigate } from "react-router-dom";
-import { getUser } from "../utils/auth";
+import { getUser } from "../../utils/auth";
 
 const ProtectedRoute = ({ children, allowedRole }) => {
   const user = getUser();

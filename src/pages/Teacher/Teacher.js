@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUser, logoutUser } from "../../utils/auth";
-import { useNavigate } from "react-router-dom";
+import { getUser } from "../../utils/auth";
 import {
   collection,
   addDoc,
@@ -8,15 +7,14 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
-import { db } from "../../firebase";
-import TaskForm from "../../components/TaskForm";
-import TaskList from "../../components/TaskList";
-import ReviewPanel from "../../components/ReviewPanel";
+import { db } from "../../utils/firebase";
+import TaskForm from "../../components/TaskForm/TaskForm";
+import TaskList from "../../components/TaskList/TaskList";
+import ReviewPanel from "../../components/ReviewPanel/ReviewPanel";
 import "./teacher.css";
 
 export default function Teacher() {
   const user = getUser();
-  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -36,10 +34,6 @@ export default function Teacher() {
     return () => unsubscribe();
   }, []);
 
-  const handleLogout = () => {
-    logoutUser();
-    navigate("/login", { replace: true });
-  };
 
   const handleSubmit = async () => {
     if (!title.trim()) return;
@@ -105,7 +99,6 @@ export default function Teacher() {
       <header className="teacher-header">
         <h2 className="teacher-title">👨‍🏫 Ուսուցիչ</h2>
         <p className="teacher-welcome">Բարի գալուստ, <span className="teacher-username">{user?.username}</span></p>
-        <button className="teacher-logout-button" onClick={handleLogout}>Ելք</button>
       </header>
 
       <TaskForm

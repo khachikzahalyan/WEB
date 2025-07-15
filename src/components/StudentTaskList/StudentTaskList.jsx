@@ -1,4 +1,4 @@
-import StudentTaskItem from "./StudentTaskItem";
+import StudentTaskItem from "../StudentTaskItem/StudentTaskItem";
 
 export default function StudentTaskList({ tasks, studentUsername, onSubmitAnswer }) {
   return (

@@ -16,7 +16,7 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
   }, [existingAnswer]);
 
   const handleFileChange = e => {
-    if (isSubmitted) return; // блокируем изменение файла после отправки
+    if (isSubmitted) return;
 
     const selected = e.target.files[0];
     if (selected) {
@@ -26,19 +26,18 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
     }
   };
 
- const handleSubmit = async () => {
-  if (!text.trim() || isSubmitted) return;
-  await onSubmitAnswer(task.id, {
-    student: studentUsername,
-    text,
-    file,
-    checked: false,
-    comments: [],
-    grade: null
-  });
-  setIsSubmitted(true);
-};
-
+  const handleSubmit = async () => {
+    if (!text.trim() || isSubmitted) return;
+    await onSubmitAnswer(task.id, {
+      student: studentUsername,
+      text,
+      file,
+      checked: false,
+      comments: [],
+      grade: null
+    });
+    setIsSubmitted(true);
+  };
 
   return (
     <div className="task-item student-task">
@@ -47,34 +46,34 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
 
       {isSubmitted ? (
         <div className="answer-view">
-          <h5>📩 Ваш ответ:</h5>
+          <h5>📩 Ձեր պատասխանը</h5>
           <pre>{text}</pre>
           {file && (
             <div>
               <a href={file} target="_blank" rel="noopener noreferrer">
-                📎 Открыть прикреплённый файл
+                📎 Բացել կցված ֆայլը
               </a>
             </div>
           )}
           {existingAnswer.checked && (
             <div className="teacher-feedback">
-              <h5>📝 Комментарии учителя:</h5>
+              <h5>📝 Ուսուցչի մեկնաբանությունները</h5>
               {existingAnswer.comments.map((c, i) => (
-                <p key={i}>Строка {c.line}: {c.comment}</p>
+                <p key={i}>Տող {c.line}: {c.comment}</p>
               ))}
-              <p>🏁 Оценка: <strong>{existingAnswer.grade}</strong></p>
+              <p>🏁 Գնահատական՝ <strong>{existingAnswer.grade}</strong></p>
             </div>
           )}
         </div>
       ) : (
         <div className="answer-form">
           <textarea
-            placeholder="Ваш ответ..."
+            placeholder="Ձեր պատասխանը․․․"
             value={text}
             onChange={e => setText(e.target.value)}
           />
           <input type="file" onChange={handleFileChange} />
-          <button onClick={handleSubmit}>Отправить</button>
+          <button onClick={handleSubmit}>Ուղարկել</button>
         </div>
       )}
     </div>
