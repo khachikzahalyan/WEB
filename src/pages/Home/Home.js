@@ -9,7 +9,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="home-container">
+    <div>
 
       <main className="home-main">
         <h1>Բարի գալուստ Ուսումնական Պլատֆորմ</h1>

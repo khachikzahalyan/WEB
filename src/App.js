@@ -9,7 +9,7 @@ import { getUser } from './utils/auth';
 import About from "./pages/About/About";
 import Possibilities from "./pages/Possibilities/Possibilities";
 import Contact from "./pages/Contact/Contact";
-import Header from "./pages/Header";
+import Header from "./pages/Navigation/Header";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 
@@ -19,7 +19,6 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -48,7 +47,6 @@ function App() {
           <Route path="/possibilities" element={<Possibilities />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-      </div>
     </Router>
   );
 }

@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { logoutUser } from '../utils/auth';
+import { logoutUser } from '../../utils/auth';
+import "./Header.css"
 
 export default function Header() {
   const navigate = useNavigate();
