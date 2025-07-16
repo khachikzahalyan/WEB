@@ -29,6 +29,7 @@ export default function TaskForm({
         value={description}
         onChange={e => setDescription(e.target.value)}
       />
+      <p>Նշեք առաջադրանքի վերջնաժամկետը</p>
       <input
         className="task-form-input"
         type="number"
