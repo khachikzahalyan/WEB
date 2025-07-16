@@ -2,7 +2,8 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 40px 20px;
-  margin-top: 40px;
+  margin-top: 10%;
+  border-radius: 7px;
   font-family: 'Segoe UI', sans-serif;
   background-color: #EAEFEF;
   color: #333446;

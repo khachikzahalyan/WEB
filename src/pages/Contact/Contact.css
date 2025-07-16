@@ -1,7 +1,8 @@
 .contact-container {
   max-width: 800px;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 10%;
+  border-radius: 7px;
   padding: 40px 20px;
   font-family: 'Segoe UI', sans-serif;
   background-color: #EAEFEF;
