@@ -7,13 +7,18 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
   const [comments, setComments] = useState([]);
   const [grade, setGrade] = useState("");
   const [lines, setLines] = useState([]);
+  const [fileDataUrl, setFileDataUrl] = useState("");
+  const [fileName, setFileName] = useState("");
 
+  // При выборе студента — заполняем все поля из его ответа
   useEffect(() => {
     if (!selectedStudent) {
       setAnswerText("");
       setComments([]);
       setGrade("");
       setLines([]);
+      setFileDataUrl("");
+      setFileName("");
       return;
     }
 
@@ -23,11 +28,15 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
       setComments(ans.comments || []);
       setGrade(ans.grade || "");
       setLines(ans.text ? ans.text.split("\n") : []);
+      setFileDataUrl(ans.fileDataUrl || "");
+      setFileName(ans.fileName || "");
     } else {
       setAnswerText("");
       setComments([]);
       setGrade("");
       setLines([]);
+      setFileDataUrl("");
+      setFileName("");
     }
   }, [selectedStudent, task]);
 
@@ -49,7 +58,9 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
           checked: true,
           comments,
           grade,
-          text: answerText
+          text: answerText,
+          fileDataUrl,
+          fileName,
         };
       }
       return ans;
@@ -82,6 +93,15 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
         <div className="review-panel-content">
           <h4 className="review-panel-subtitle">Ուսանողի պատասխանները:</h4>
           <pre className="review-panel-answer-text">{answerText}</pre>
+
+          {/* Отображение прикреплённого файла */}
+          {fileDataUrl && (
+            <div className="review-panel-file">
+              <a href={fileDataUrl} download={fileName}>
+                📎 Ներբեռնել {fileName}
+              </a>
+            </div>
+          )}
 
           <h4 className="review-panel-subtitle">Մեկնաբանություններ տողերի համար:</h4>
           {lines.map((lineText, idx) => {

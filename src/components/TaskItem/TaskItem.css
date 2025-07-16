@@ -61,3 +61,17 @@
 .review-btn:hover {
   background-color: #388e3c;
 }
+.task-item-created-at {
+  font-size: 13px;
+  color: #7F8CAA;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-style: italic;
+}
+
+.task-item-deadline {
+  font-size: 13px;
+  color: #D32F2F;
+  font-weight: 700;
+  margin-bottom: 12px;
+}

@@ -4,8 +4,10 @@ import "./TaskForm.css";
 export default function TaskForm({
   title,
   description,
+  deadlineInDays,
   setTitle,
   setDescription,
+  setDeadlineInDays,
   onSubmit,
   isEdit
 }) {
@@ -26,6 +28,14 @@ export default function TaskForm({
         placeholder="Առաջադրանքի նկարագրություն"
         value={description}
         onChange={e => setDescription(e.target.value)}
+      />
+      <input
+        className="task-form-input"
+        type="number"
+        min={1}
+        placeholder="Ժամկետ (օրերով)"
+        value={deadlineInDays}
+        onChange={e => setDeadlineInDays(Number(e.target.value))}
       />
       <button className="task-form-button" onClick={onSubmit}>
         {isEdit ? "Պահպանել փոփոխությունները" : "Ավելացնել առաջադրանք"}

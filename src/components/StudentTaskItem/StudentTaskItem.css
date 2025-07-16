@@ -133,4 +133,15 @@
   border-radius: 8px;
   font-size: 15px;
   color: #333446;
+}.student-task-createdAt {
+  font-size: 14px;
+  color: #3664ce;
+  margin-top: 8px;
+}
+
+.student-task-deadline {
+  font-size: 14px;
+  color: #D32F2F;
+  font-weight: 700;
+  margin-top: 4px;
 }

@@ -6,12 +6,13 @@ import {
   onSnapshot,
   updateDoc,
   doc,
+  deleteDoc,
+  Timestamp
 } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import TaskList from "../../components/TaskList/TaskList";
 import ReviewPanel from "../../components/ReviewPanel/ReviewPanel";
-import { deleteDoc } from "firebase/firestore";
 import "./teacher.css";
 
 export default function Teacher() {
@@ -19,12 +20,11 @@ export default function Teacher() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [deadlineInDays, setDeadlineInDays] = useState(1);
+
   const [editTaskId, setEditTaskId] = useState(null);
   const [reviewTask, setReviewTask] = useState(null); 
-  const [tasks, setTasks] = useState(() => {
-    const stored = localStorage.getItem("tasks");
-    return stored ? JSON.parse(stored) : [];
-  });
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "tasks"), snapshot => {
@@ -41,40 +41,44 @@ export default function Teacher() {
 
     if (editTaskId) {
       const taskRef = doc(db, "tasks", editTaskId);
-      await updateDoc(taskRef, { title, description });
+      await updateDoc(taskRef, { title, description, deadlineInDays });
       setEditTaskId(null);
     } else {
       await addDoc(collection(db, "tasks"), {
         title,
         description,
         createdBy: user.username,
-        answers: []
+        answers: [],
+        createdAt: Timestamp.now(),
+        deadlineInDays,
       });
     }
 
     setTitle("");
     setDescription("");
+    setDeadlineInDays(1);
   };
 
   const handleEdit = (task) => {
     setTitle(task.title);
     setDescription(task.description);
+    setDeadlineInDays(task.deadlineInDays || 1);
     setEditTaskId(task.id);
   };
 
- 
-const handleDelete = async (id) => {
-  if (window.confirm("Համոզվա՞ծ եք, որ ցանկանում եք հեռացնել այս առաջադրանքը։")) {
-    try {
-      await deleteDoc(doc(db, "tasks", id)); 
-      if (reviewTask && reviewTask.id === id) {
-        setReviewTask(null);
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Համոզվա՞ծ եք, որ ցանկանում եք հեռացնել այս առաջադրանքը։")) {
+      try {
+        await deleteDoc(doc(db, "tasks", id)); 
+        if (reviewTask && reviewTask.id === id) {
+          setReviewTask(null);
+        }
+      } catch (error) {
+        console.error("Ошибка при удалении задания:", error);
       }
-    } catch (error) {
-      console.error("Ошибка при удалении задания:", error);
     }
-  }
-};
+  };
 
   const openReview = (task) => {
     setReviewTask(task);
@@ -111,8 +115,10 @@ const handleDelete = async (id) => {
       <TaskForm
         title={title}
         description={description}
+        deadlineInDays={deadlineInDays}
         setTitle={setTitle}
         setDescription={setDescription}
+        setDeadlineInDays={setDeadlineInDays}
         onSubmit={handleSubmit}
         isEdit={!!editTaskId}
         className="teacher-task-form"

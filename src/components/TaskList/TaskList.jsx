@@ -1,19 +1,20 @@
+import React from "react";
 import TaskItem from "../TaskItem/TaskItem";
+
 
 export default function TaskList({ tasks, onEdit, onDelete, onReview }) {
   return (
-    <div className="task-list">
-      <h3>Առաջադրանքների Ցուցակ</h3>
+    <div className="task-list-container">
       {tasks.length === 0 ? (
-        <p>Առաջադրանքներ դեռ չկան</p>
+        <p>Առաջադրանքներ չկան</p>
       ) : (
         tasks.map(task => (
           <TaskItem
             key={task.id}
             task={task}
-            onEdit={onEdit}
-            onDelete={onDelete}
-            onReview={onReview}
+            onEdit={() => onEdit(task)}
+            onDelete={() => onDelete(task.id)}
+            onReview={() => onReview(task)}
           />
         ))
       )}
