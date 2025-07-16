@@ -11,6 +11,7 @@ import { db } from "../../utils/firebase";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import TaskList from "../../components/TaskList/TaskList";
 import ReviewPanel from "../../components/ReviewPanel/ReviewPanel";
+import { deleteDoc } from "firebase/firestore";
 import "./teacher.css";
 
 export default function Teacher() {
@@ -61,13 +62,19 @@ export default function Teacher() {
     setEditTaskId(task.id);
   };
 
-  const handleDelete = (id) => {
-    if (window.confirm("Համոզվա՞ծ եք, որ ցանկանում եք հեռացնել այս առաջադրանքը։")) {
-      setTasks(prev => prev.filter(task => task.id !== id));
+ 
+const handleDelete = async (id) => {
+  if (window.confirm("Համոզվա՞ծ եք, որ ցանկանում եք հեռացնել այս առաջադրանքը։")) {
+    try {
+      await deleteDoc(doc(db, "tasks", id)); 
       if (reviewTask && reviewTask.id === id) {
         setReviewTask(null);
       }
-    }}
+    } catch (error) {
+      console.error("Ошибка при удалении задания:", error);
+    }
+  }
+};
 
   const openReview = (task) => {
     setReviewTask(task);
