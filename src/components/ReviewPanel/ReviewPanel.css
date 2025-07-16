@@ -1,0 +1,108 @@
+.review-panel-wrapper {
+  background-color: #EAEFEF;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333446;
+}
+
+.review-panel-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #7F8CAA;
+}
+
+.review-panel-label {
+  display: block;
+  font-weight: 600;
+  margin: 20px 0 10px;
+}
+
+.review-panel-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #B8CFCE;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333446;
+}
+
+.review-panel-content {
+  margin-top: 30px;
+}
+
+.review-panel-subtitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #7F8CAA;
+}
+
+.review-panel-answer-text {
+  background-color: #f4f6f8;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1.5px solid #B8CFCE;
+  white-space: pre-wrap;
+  color: #333446;
+  font-size: 15px;
+}
+
+.review-panel-line-block {
+  margin-bottom: 16px;
+}
+
+.review-panel-comment {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #B8CFCE;
+  font-size: 15px;
+  background-color: #fff;
+  color: #333446;
+  resize: vertical;
+}
+
+.review-panel-grade-block {
+  margin: 24px 0;
+}
+
+.review-panel-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.review-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-btn.save {
+  background-color: #7F8CAA;
+  color: #EAEFEF;
+}
+
+.review-btn.save:hover {
+  background-color: #333446;
+}
+
+.review-btn.cancel {
+  background-color: rgb(243, 92, 92);
+  color: #333446;
+  border: 2px solid #B8CFCE;
+}
+
+.review-btn.cancel:hover {
+  background-color: #f0f0f0;
+}

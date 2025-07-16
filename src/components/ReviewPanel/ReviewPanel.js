@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./ReviewPanel.css";
 
 export default function ReviewPanel({ task, onSave, onCancel }) {
   const [selectedStudent, setSelectedStudent] = useState(null);
@@ -58,12 +59,13 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
   };
 
   return (
-    <div className="review-panel">
-      <h3>Առաջադրանքի ստուգում: {task.title}</h3>
+    <div className="review-panel-wrapper">
+      <h3 className="review-panel-title">Առաջադրանքի ստուգում: {task.title}</h3>
 
-      <label>
+      <label className="review-panel-label">
         Ընտրեք ուսանողին:
         <select
+          className="review-panel-select"
           value={selectedStudent || ""}
           onChange={e => setSelectedStudent(e.target.value)}
         >
@@ -77,33 +79,35 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
       </label>
 
       {selectedStudent && (
-        <div className="review-content">
-          <h4>Ուսանողի պատասխանները:</h4>
-          <pre style={{ whiteSpace: "pre-wrap", background: "#f5f5f5", padding: "10px" }}>
-            {answerText}
-          </pre>
+        <div className="review-panel-content">
+          <h4 className="review-panel-subtitle">Ուսանողի պատասխանները:</h4>
+          <pre className="review-panel-answer-text">{answerText}</pre>
 
-          <h4>Մեկնաբանություններ տողերի համար:</h4>
+          <h4 className="review-panel-subtitle">Մեկնաբանություններ տողերի համար:</h4>
           {lines.map((lineText, idx) => {
             const lineNum = idx + 1;
             const commentObj = comments.find(c => c.line === lineNum);
             return (
-              <div key={lineNum} style={{ marginBottom: "8px" }}>
-                <div><strong>Տող {lineNum}:</strong> {lineText}</div>
+              <div key={lineNum} className="review-panel-line-block">
+                <div><strong>Տող :</strong> {lineText}</div>
                 <textarea
+                  className="review-panel-comment"
                   placeholder="Մեկնաբանություն"
                   value={commentObj ? commentObj.comment : ""}
                   onChange={e => handleCommentChange(lineNum, e.target.value)}
-                  style={{ width: "100%" }}
                 />
               </div>
             );
           })}
 
-          <div>
-            <label>
+          <div className="review-panel-grade-block">
+            <label className="review-panel-label">
               Գնահատական:
-              <select value={grade} onChange={e => setGrade(e.target.value)}>
+              <select
+                className="review-panel-select"
+                value={grade}
+                onChange={e => setGrade(e.target.value)}
+              >
                 <option value="">-- ընտրել --</option>
                 <option value="A">A</option>
                 <option value="B">B</option>
@@ -114,8 +118,10 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
             </label>
           </div>
 
-          <button onClick={handleSave}>Պահպանել ստուգումը</button>
-          <button onClick={onCancel} style={{ marginLeft: "10px" }}>Չեղարկել</button>
+          <div className="review-panel-buttons">
+            <button className="review-btn save" onClick={handleSave}>Պահպանել ստուգումը</button>
+            <button className="review-btn cancel" onClick={onCancel}>Չեղարկել</button>
+          </div>
         </div>
       )}
     </div>

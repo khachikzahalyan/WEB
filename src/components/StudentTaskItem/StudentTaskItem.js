@@ -59,7 +59,7 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
             <div className="student-teacher-feedback">
               <h5>📝 Ուսուցչի մեկնաբանությունները</h5>
               {existingAnswer.comments.map((c, i) => (
-                <p key={i}>Տող {c.line}: {c.comment}</p>
+                <p key={i}>մեկնաբանություն : {c.comment}</p>
               ))}
               <p>🏁 Գնահատական՝ <strong>{existingAnswer.grade}</strong></p>
             </div>
