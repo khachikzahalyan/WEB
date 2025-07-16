@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <header className="home-header">
-      <Link to="/" className="logo">Ուսումնական Պլատֆորմ</Link>
+      <Link to="/" className="logo">Ուսումնական Պորտֆոլիո</Link>
       <nav className="home-menu">
         <div className="menu-left">
           <Link to="/about">Մեր մասին</Link>
