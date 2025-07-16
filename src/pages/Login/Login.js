@@ -9,19 +9,19 @@ export default function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     const user = loginUser(username, password);
     if (user) {
       saveUser(user);
       navigate(`/${user.role}`);
-      navigate(`/${user.role}`); 
     } else {
       setError("Ներդրված մուտքանունը կամ գաղտնաբառը սխալ է");
     }
   };
 
   return (
-    <div className="login-page__container">
+    <form className="login-page__container" onSubmit={handleLogin}>
       <h2 className="login-page__title">Մուտք</h2>
       <input
         className="login-page__input"
@@ -37,10 +37,10 @@ export default function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button className="login-page__button" onClick={handleLogin}>
+      <button className="login-page__button" type="submit">
         Մուտք գործել
       </button>
       {error && <p className="login-page__error">{error}</p>}
-    </div>
+    </form>
   );
 }
