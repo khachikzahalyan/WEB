@@ -78,16 +78,6 @@
   justify-content: space-between;
 }
 
-.review-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
 .review-btn.save {
   background-color: #7F8CAA;
   color: #EAEFEF;
