@@ -1,0 +1,51 @@
+.task-form-title {
+  margin-bottom: 18px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333446;
+}
+
+.task-form-input,
+.task-form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 2px solid #B8CFCE;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333446;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.task-form-input:focus,
+.task-form-textarea:focus {
+  border-color: #7F8CAA;
+  outline: none;
+}
+
+.task-form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.task-form-button {
+  display: block;
+  margin: 20px auto 0;
+  background-color: #7F8CAA;
+  color: #EAEFEF;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.task-form-button:hover {
+  background-color: #333446;
+}
+

@@ -1,0 +1,63 @@
+.task-item-card {
+  border: 2px solid #B8CFCE;
+  border-radius: 12px;
+  background-color: #EAEFEF;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  text-align: left;
+}
+
+.task-item-title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333446;
+}
+
+.task-item-description {
+  font-size: 16px;
+  color: #7F8CAA;
+  margin-bottom: 16px;
+}
+
+.task-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.task-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.edit-btn {
+  background-color: #7F8CAA;
+}
+
+.edit-btn:hover {
+  background-color: #6b7b9b;
+}
+
+.delete-btn {
+  background-color: #e53935;
+}
+
+.delete-btn:hover {
+  background-color: #c62828;
+}
+
+.review-btn {
+  background-color: #4caf50;
+}
+
+.review-btn:hover {
+  background-color: #388e3c;
+}

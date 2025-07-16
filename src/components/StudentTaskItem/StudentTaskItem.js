@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import "./StudentTaskItem.css";
 
 export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer }) {
   const existingAnswer = task.answers?.find(ans => ans.student === studentUsername);
@@ -17,7 +18,6 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
 
   const handleFileChange = e => {
     if (isSubmitted) return;
-
     const selected = e.target.files[0];
     if (selected) {
       const reader = new FileReader();
@@ -40,23 +40,23 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
   };
 
   return (
-    <div className="task-item student-task">
-      <h4>{task.title}</h4>
-      <p>{task.description}</p>
+    <div className="student-task-card">
+      <h4 className="student-task-title">{task.title}</h4>
+      <p className="student-task-desc">{task.description}</p>
 
       {isSubmitted ? (
-        <div className="answer-view">
-          <h5>📩 Ձեր պատասխանը</h5>
-          <pre>{text}</pre>
+        <div className="student-answer-view">
+          <h5 className="student-answer-heading">📩 Ձեր պատասխանը</h5>
+          <pre className="student-answer-text">{text}</pre>
           {file && (
-            <div>
+            <div className="student-answer-file">
               <a href={file} target="_blank" rel="noopener noreferrer">
                 📎 Բացել կցված ֆայլը
               </a>
             </div>
           )}
           {existingAnswer.checked && (
-            <div className="teacher-feedback">
+            <div className="student-teacher-feedback">
               <h5>📝 Ուսուցչի մեկնաբանությունները</h5>
               {existingAnswer.comments.map((c, i) => (
                 <p key={i}>Տող {c.line}: {c.comment}</p>
@@ -66,14 +66,15 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
           )}
         </div>
       ) : (
-        <div className="answer-form">
+        <div className="student-answer-form">
           <textarea
+            className="student-answer-textarea"
             placeholder="Ձեր պատասխանը․․․"
             value={text}
             onChange={e => setText(e.target.value)}
           />
-          <input type="file" onChange={handleFileChange} />
-          <button onClick={handleSubmit}>Ուղարկել</button>
+          <input className="student-answer-fileinput" type="file" onChange={handleFileChange} />
+          <button className="student-answer-submit" onClick={handleSubmit}>Ուղարկել</button>
         </div>
       )}
     </div>

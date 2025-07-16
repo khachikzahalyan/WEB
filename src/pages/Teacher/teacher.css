@@ -1,14 +1,17 @@
 .teacher-main-container {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 30px 25px;
-  background-color: #fafafa;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 15px;
+  width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
   box-sizing: border-box;
   text-align: center;
-  color: #222;
 }
 
 .teacher-header {
@@ -19,25 +22,25 @@
   font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #1e3a8a;
+  color: #7F8CAA;
 }
 
 .teacher-welcome {
   font-size: 1.1rem;
   margin-bottom: 20px;
-  color: #555;
+  color: #B8CFCE;
 }
 
 .teacher-username {
   font-weight: 600;
-  color: #2563eb;
+  color: #333446;
 }
 
 .teacher-logout-button {
-  background-color: #ef4444;
+  background-color: #333446;
   border: none;
   border-radius: 6px;
-  color: white;
+  color: #EAEFEF;
   padding: 10px 24px;
   font-size: 1rem;
   font-weight: 600;
@@ -46,13 +49,13 @@
 }
 
 .teacher-logout-button:hover {
-  background-color: #b91c1c;
+  background-color: #7F8CAA;
 }
 
 .teacher-back-button {
   background: transparent;
   border: none;
-  color: #2563eb;
+  color: #333446;
   font-size: 1rem;
   cursor: pointer;
   margin-bottom: 20px;
@@ -61,7 +64,7 @@
 }
 
 .teacher-back-button:hover {
-  color: #1e40af;
+  color: #7F8CAA;
 }
 
 .teacher-task-form {
@@ -71,4 +74,3 @@
 .teacher-task-list {
   margin-top: 20px;
 }
-

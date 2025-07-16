@@ -4,13 +4,13 @@
   padding: 40px 20px;
   margin-top: 40px;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f5fff4;
-  color: #2e3b2c;
+  background-color: #EAEFEF;
+  color: #333446;
 }
 
 .possibilities-container h1 {
   font-size: 32px;
-  color: #1b5e20;
+  color: #333446;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -20,7 +20,7 @@
   list-style: disc;
   font-size: 16px;
   line-height: 1.6;
-  color: #444;
+  color: #7F8CAA;
 }
 
 .possibilities-container li {

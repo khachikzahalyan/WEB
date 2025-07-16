@@ -4,20 +4,20 @@
   margin-top: 40px;
   padding: 40px 20px;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f5fff4;
-  color: #2e3b2c;
+  background-color: #EAEFEF;
+  color: #333446;
 }
 
 .contact-container h1 {
   font-size: 32px;
-  color: #1b5e20;
+  color: #333446;
   margin-bottom: 20px;
   text-align: center;
 }
 
 .contact-container p {
   font-size: 16px;
-  color: #333;
+  color: #333446;
   margin-bottom: 20px;
   line-height: 1.6;
 }
@@ -31,9 +31,9 @@
 .contact-container li {
   font-size: 16px;
   margin-bottom: 10px;
-  color: #444;
+  color: #7F8CAA;
 }
 
 .contact-container li strong {
-  color: #2e7d32;
+  color: #333446;
 }
