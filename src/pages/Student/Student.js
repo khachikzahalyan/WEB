@@ -14,7 +14,7 @@ export default function Student() {
   const user = getUser();
   const [tasks, setTasks] = useState([]);
 
-  // Получаем все задания в реальном времени
+  
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "tasks"), (snapshot) => {
       const taskData = snapshot.docs.map((doc) => ({
@@ -27,7 +27,7 @@ export default function Student() {
     return () => unsubscribe();
   }, []);
 
-  // Обработка отправки ответа от студента
+ 
   const handleAnswerSubmit = async (taskId, answer) => {
     const taskRef = doc(db, "tasks", taskId);
     const task = tasks.find((t) => t.id === taskId);

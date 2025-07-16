@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./StudentTaskItem.css";
 
-// Форматируем timestamp (Firebase Timestamp или Date)
+
 function formatDate(timestamp) {
   if (!timestamp) return "-";
   const dateObj = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
@@ -57,10 +57,10 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
     setIsSubmitted(true);
   };
 
-  // Вычисляем дату создания задания
+
   const createdAtDate = task.createdAt ? (task.createdAt.toDate ? task.createdAt.toDate() : new Date(task.createdAt)) : null;
 
-  // Вычисляем дедлайн, прибавляя к createdAt deadlineInDays
+  
   let deadlineDate = null;
   if (createdAtDate && task.deadlineInDays) {
     deadlineDate = new Date(createdAtDate);
@@ -72,12 +72,12 @@ export default function StudentTaskItem({ task, studentUsername, onSubmitAnswer 
       <h4 className="student-task-title">{task.title}</h4>
       <p className="student-task-desc">{task.description}</p>
 
-      {/* Дата добавления */}
+     
       {createdAtDate && (
         <p className="student-task-createdAt">Ավելացված է՝ {formatDate(createdAtDate)}</p>
       )}
 
-      {/* Дедлайн */}
+     
       {deadlineDate && (
         <p className="student-task-deadline">Վերջնաժամկետ՝ {formatDate(deadlineDate)}</p>
       )}

@@ -10,7 +10,7 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
   const [fileDataUrl, setFileDataUrl] = useState("");
   const [fileName, setFileName] = useState("");
 
-  // При выборе студента — заполняем все поля из его ответа
+  
   useEffect(() => {
     if (!selectedStudent) {
       setAnswerText("");
@@ -94,7 +94,7 @@ export default function ReviewPanel({ task, onSave, onCancel }) {
           <h4 className="review-panel-subtitle">Ուսանողի պատասխանները:</h4>
           <pre className="review-panel-answer-text">{answerText}</pre>
 
-          {/* Отображение прикреплённого файла */}
+          
           {fileDataUrl && (
             <div className="review-panel-file">
               <a href={fileDataUrl} download={fileName}>

@@ -35,6 +35,47 @@ export default function Teacher() {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+
+      tasks.forEach(async (task) => {
+        if (!task.createdAt || !task.deadlineInDays) return;
+
+        const deadlineDate = task.createdAt.toDate
+          ? new Date(task.createdAt.toDate().getTime() + task.deadlineInDays * 86400000)
+          : new Date(task.createdAt.getTime() + task.deadlineInDays * 86400000);
+
+        const isDeadlinePassed = now > deadlineDate;
+
+        const alreadyAnswered = task.answers?.some(
+          (a) => a.student === "student"
+        );
+        const hasF = task.answers?.some(
+          (a) => a.student === "student" && a.grade === "F"
+        );
+
+        if (isDeadlinePassed && !alreadyAnswered && !hasF) {
+          const taskRef = doc(db, "tasks", task.id);
+
+          const updatedAnswers = task.answers || [];
+          updatedAnswers.push({
+            student: "student",
+            text: "",
+            fileName: "",
+            fileDataUrl: "",
+            checked: true,
+            comments: [{ comment: "Չի հանձնվել ժամանակին" }],
+            grade: "F",
+          });
+
+          await updateDoc(taskRef, { answers: updatedAnswers });
+        }
+      });
+    }, 60000); 
+
+    return () => clearInterval(interval);
+  }, [tasks]);
 
   const handleSubmit = async () => {
     if (!title.trim()) return;

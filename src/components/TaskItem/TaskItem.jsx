@@ -3,7 +3,7 @@ import "./TaskItem.css";
 export default function TaskItem({ task, onEdit, onDelete, onReview }) {
   const createdAtDate = task.createdAt ? (task.createdAt.toDate ? task.createdAt.toDate() : new Date(task.createdAt)) : null;
 
-  // Рассчитаем дату дедлайна, если есть deadlineInDays
+ 
   let deadlineDate = null;
   if (createdAtDate && task.deadlineInDays) {
     deadlineDate = new Date(createdAtDate);
